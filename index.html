@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Danzz Game Shop</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Poppins',sans-serif}
+
+body{
+  background:linear-gradient(180deg,#05010a,#0d0221,#02000a);
+  color:white;
+  text-align:center;
+  overflow-x:hidden;
+}
+
+header{padding:30px 20px;}
+
+h1{
+  font-size:32px;
+  text-shadow:0 0 10px #00f7ff,0 0 20px #00f7ff;
+}
+
+.subtitle{opacity:.8;margin-top:8px}
+
+/* Profile */
+.profile-wrapper{
+  display:flex;
+  justify-content:center;
+  margin-top:20px;
+}
+
+.profile{
+  width:140px;
+  height:140px;
+  border-radius:50%;
+  border:3px solid #00f7ff;
+  box-shadow:0 0 20px #00f7ff,0 0 40px #00f7ff;
+  animation:float 3s ease-in-out infinite;
+  object-fit:cover;
+}
+
+@keyframes float{
+  0%{transform:translateY(0)}
+  50%{transform:translateY(-12px)}
+  100%{transform:translateY(0)}
+}
+
+.container{
+  max-width:600px;
+  margin:30px auto;
+  padding:20px;
+}
+
+.card{
+  background:rgba(255,255,255,0.05);
+  border-radius:15px;
+  padding:20px;
+  margin-top:20px;
+  box-shadow:0 0 20px rgba(0,255,255,.2);
+}
+
+.card h2{
+  margin-bottom:15px;
+  text-shadow:0 0 10px cyan;
+}
+
+/* VIP option */
+.buy-option{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  background:rgba(0,0,0,0.5);
+  padding:14px;
+  margin:10px 0;
+  border-radius:10px;
+  border:1px solid #00f7ff;
+  cursor:pointer;
+  transition:.3s;
+}
+
+/* sembunyikan radio default */
+.buy-option input{
+  accent-color:#00f7ff;
+  transform:scale(1.2);
+}
+
+.buy-option:hover{
+  background:#00f7ff;
+  color:black;
+  box-shadow:0 0 15px #00f7ff;
+}
+
+input, select{
+  width:100%;
+  padding:12px;
+  margin-top:10px;
+  border-radius:8px;
+  border:none;
+  outline:none;
+}
+
+button{
+  margin-top:15px;
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:10px;
+  background:#00f7ff;
+  color:black;
+  font-weight:bold;
+  cursor:pointer;
+  transition:.3s;
+}
+
+button:hover{
+  box-shadow:0 0 20px #00f7ff;
+}
+
+footer{
+  margin:40px 0 20px;
+  opacity:.6;
+  font-size:14px;
+}
+
+@media(max-width:500px){
+  h1{font-size:24px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Danzz Game Shop</h1>
+  <div class="subtitle">VIP Feature Store</div>
+</header>
+
+<div class="profile-wrapper">
+  <img src="img/file_00000000fd5c7230933896cdadba85d9.png"
+       class="profile">
+</div>
+
+<div class="container">
+
+<div class="card">
+<h2>Pilih Fitur VIP</h2>
+
+<label class="buy-option">
+<input type="radio" name="vip"
+value="AKSES FITUR VIP ASTUTE (RP 15.000)">
+AKSES FITUR VIP ASTUTE — RP 15.000
+</label>
+
+<label class="buy-option">
+<input type="radio" name="vip"
+value="AKSES FITUR VIP FFKIPAS (RP 10.000)">
+AKSES FITUR VIP FFKIPAS — RP 10.000
+</label>
+
+</div>
+
+<div class="card">
+<h2>Form Pembelian</h2>
+
+<input type="text" id="buyer" placeholder="Nama Buyer">
+<input type="text" id="unlock" placeholder="Unlock ID">
+
+<button onclick="kirimPesan()">
+Kirim Pesanan ke Admin
+</button>
+
+</div>
+</div>
+
+<footer>
+© 2026 Danzz Game Shop
+</footer>
+
+<script>
+function kirimPesan(){
+  const buyer = document.getElementById('buyer').value;
+  const unlock = document.getElementById('unlock').value;
+  const vip = document.querySelector('input[name="vip"]:checked');
+
+  if(!buyer || !unlock || !vip){
+    alert('Harap lengkapi data terlebih dahulu!');
+    return;
+  }
+
+  const pesan =
+`HALO ADMIN SAYA ${buyer}, INGIN MEMBELI ${vip.value},
+UNLOCK ID ${unlock}, MOHON DIPROSES 🙏`;
+
+  const url =
+"https://wa.me/6285707277941?text=" +
+encodeURIComponent(pesan);
+
+  window.open(url,'_blank');
+}
+</script>
+
+</body>
+</html>
